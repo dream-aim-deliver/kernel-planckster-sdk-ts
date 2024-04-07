@@ -1,6 +1,6 @@
 {
-  "name": "kernel-planckster-sdk-ts",
-  "version": "1.0.0",
+  "name": "@maany/kernel-planckster-sdk-ts",
+  "version": "1.0.0-alpha",
   "description": "A TypeScript client sdk for Kernel Planckster, the meteadata store for SDA Planckster suite",
   "repository": {
     "type": "git",
@@ -40,17 +40,18 @@
     "src"
   ],
   "scripts": {
-    "clean": "rm -rf dist",
-    "dev": "vite",
-    "build": "vite build",
-    "test": "test",
+    "clean": "rimraf dist src/client",
+    "patch-feature-name": "python3 ./tools/patch_feature_name.py",
     "generate-client": "openapi-ts --input openapi.json --output ./src/client --client axios",
-    "generate-client-openapi": "openapi --input openapi.json --output ./src/client --client axios"
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "test": "test"
   },
   "devDependencies": {
     "@hey-api/openapi-ts": "^0.34.5",
     "@types/node": "^20.12.5",
     "openapi-typescript-codegen": "^0.28.0",
+    "rimraf": "^5.0.5",
     "tslib": "^2.6.2",
     "typescript": "^5.4.4",
     "vite": "^5.2.8",
@@ -60,6 +61,6 @@
     "axios": "^1.6.8"
   },
   "publishConfig": {
-		"access": "public"
-	}
+    "access": "public"
+  }
 }
