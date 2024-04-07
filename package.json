@@ -40,7 +40,7 @@
     "src"
   ],
   "scripts": {
-    "clean": "rimraf dist src/client",
+    "clean": "rimraf dist src/client docs coverage",
     "patch-openapi-spec": "python3 ./tools/patch_feature_name.py",
     "generate-client": "openapi-ts --input openapi.json --output ./src/client --client axios",
     "build": "vite build",
