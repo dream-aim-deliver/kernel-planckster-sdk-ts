@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "rootDir": "./src",
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "types": ["vite/client", "node"],
+        "lib": ["ESNext"],
+        "outDir": "./dist",
+        "strict": true,
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules", "test", "dist"],
+    "references": [{ "path": "./tsconfig.node.json" }]
+}

@@ -1,0 +1,65 @@
+{
+  "name": "kernel-planckster-sdk-ts",
+  "version": "1.0.0",
+  "description": "A TypeScript client sdk for Kernel Planckster, the meteadata store for SDA Planckster suite",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dream-aim-deliver/kernel-planckster-sdk-ts.git"
+  },
+  "keywords": [
+    "sdk",
+    "client",
+    "http",
+    "ai"
+  ],
+  "author": "Mayank Sharma <imptodefeat@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/dream-aim-deliver/kernel-planckster-sdk-ts/issues"
+  },
+  "homepage": "https://github.com/dream-aim-deliver/kernel-planckster-sdk-ts#readme",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      },
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "dev": "vite",
+    "build": "vite build",
+    "test": "test",
+    "generate-client": "openapi-ts --input openapi.json --output ./src/client --client axios",
+    "generate-client-openapi": "openapi --input openapi.json --output ./src/client --client axios"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.34.5",
+    "@types/node": "^20.12.5",
+    "openapi-typescript-codegen": "^0.28.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.4",
+    "vite": "^5.2.8",
+    "vite-plugin-sdk": "^0.1.2"
+  },
+  "dependencies": {
+    "axios": "^1.6.8"
+  },
+  "publishConfig": {
+		"access": "public"
+	}
+}
