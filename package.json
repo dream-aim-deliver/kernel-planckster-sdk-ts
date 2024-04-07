@@ -41,9 +41,10 @@
   ],
   "scripts": {
     "clean": "rimraf dist src/client",
-    "patch-feature-name": "python3 ./tools/patch_feature_name.py",
+    "patch-openapi-spec": "python3 ./tools/patch_feature_name.py",
     "generate-client": "openapi-ts --input openapi.json --output ./src/client --client axios",
     "build": "vite build",
+    "build:docs": "typedoc --out docs src/index.ts",
     "dev": "vite build --watch",
     "test": "test"
   },
@@ -53,6 +54,7 @@
     "openapi-typescript-codegen": "^0.28.0",
     "rimraf": "^5.0.5",
     "tslib": "^2.6.2",
+    "typedoc": "^0.25.12",
     "typescript": "^5.4.4",
     "vite": "^5.2.8",
     "vite-plugin-sdk": "^0.1.2"
