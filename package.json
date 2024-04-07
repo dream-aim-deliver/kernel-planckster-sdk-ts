@@ -46,18 +46,23 @@
     "build": "vite build",
     "build:docs": "typedoc --out docs src/index.ts",
     "dev": "vite build --watch",
-    "test": "test"
+    "test": "vitest --run --coverage",
+    "test:watch": "vitest --watch",
+    "test:ui": "vitest --ui"
   },
   "devDependencies": {
     "@hey-api/openapi-ts": "^0.34.5",
     "@types/node": "^20.12.5",
+    "@vitest/coverage-v8": "^1.4.0",
+    "@vitest/ui": "^1.4.0",
     "openapi-typescript-codegen": "^0.28.0",
     "rimraf": "^5.0.5",
     "tslib": "^2.6.2",
     "typedoc": "^0.25.12",
     "typescript": "^5.4.4",
     "vite": "^5.2.8",
-    "vite-plugin-sdk": "^0.1.2"
+    "vite-plugin-sdk": "^0.1.2",
+    "vitest": "^1.4.0"
   },
   "dependencies": {
     "axios": "^1.6.8"
