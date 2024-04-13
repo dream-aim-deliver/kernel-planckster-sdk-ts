@@ -120,7 +120,7 @@ export type ListConversationsViewModel = {
 /**
  * View Model for the List Messages Feature. Represents all messages in the database for a given conversation.
  */
-export type ListMessagesViewModel = {
+export type ListMessagesViewModel_Input = {
 	status: boolean;
 	code: number;
 	errorCode?: number | null;
@@ -130,7 +130,25 @@ export type ListMessagesViewModel = {
 	/**
 	 * List of all messages in the database for a given conversation.
 	 */
-	message_list: Array<string>;
+	message_list: Array<MessageBase>;
+};
+
+
+
+/**
+ * View Model for the List Messages Feature. Represents all messages in the database for a given conversation.
+ */
+export type ListMessagesViewModel_Output = {
+	status: boolean;
+	code: number;
+	errorCode?: number | null;
+	errorMessage?: string | null;
+	errorName?: string | null;
+	errorType?: string | null;
+	/**
+	 * List of all messages in the database for a given conversation.
+	 */
+	message_list: Array<MessageBase>;
 };
 
 
@@ -223,6 +241,44 @@ export type ListSourceDataViewModel_Output = {
 	 */
 	source_data_list: Array<SourceData>;
 };
+
+
+
+/**
+ * Base class for user queries and agent responses
+ * 
+ * @param id: the id of the message
+ * @type id: int
+ * @param content: the content of the message
+ * @type content: str
+ * @param timestamp: the datetime when the message was sent
+ * @type timestamp: datetime
+ * @param sender: the name of the sender of the message
+ * @type sender: str
+ * @param sender_type: the type of the sender of the message
+ * @type sender_type: MessageSenderTypeEnum
+ */
+export type MessageBase = {
+	created_at: string;
+	updated_at: string;
+	deleted: boolean;
+	deleted_at: string | null;
+	id: number;
+	content: string;
+	timestamp: string;
+	sender: string;
+	sender_type: MessageSenderTypeEnum;
+};
+
+
+
+/**
+ * Enum for the different types of sender of messages
+ * 
+ * USER: the sender is a user
+ * AGENT: the sender is an agent
+ */
+export type MessageSenderTypeEnum = 'user' | 'agent';
 
 
 
