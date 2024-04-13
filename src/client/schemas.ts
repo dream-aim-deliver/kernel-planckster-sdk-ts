@@ -317,7 +317,7 @@ export const $ListConversationsViewModel = {
 	},
 } as const;
 
-export const $ListMessagesViewModel = {
+export const $ListMessagesViewModel_Input = {
 	description: `View Model for the List Messages Feature. Represents all messages in the database for a given conversation.`,
 	properties: {
 		status: {
@@ -363,8 +363,61 @@ export const $ListMessagesViewModel = {
 		message_list: {
 	type: 'array',
 	contains: {
-	type: 'string',
+		type: 'MessageBase',
+	},
+	isRequired: true,
 },
+	},
+} as const;
+
+export const $ListMessagesViewModel_Output = {
+	description: `View Model for the List Messages Feature. Represents all messages in the database for a given conversation.`,
+	properties: {
+		status: {
+	type: 'boolean',
+	isRequired: true,
+},
+		code: {
+	type: 'number',
+	isRequired: true,
+},
+		errorCode: {
+	type: 'any-of',
+	contains: [{
+	type: 'number',
+}, {
+	type: 'null',
+}],
+},
+		errorMessage: {
+	type: 'any-of',
+	contains: [{
+	type: 'string',
+}, {
+	type: 'null',
+}],
+},
+		errorName: {
+	type: 'any-of',
+	contains: [{
+	type: 'string',
+}, {
+	type: 'null',
+}],
+},
+		errorType: {
+	type: 'any-of',
+	contains: [{
+	type: 'string',
+}, {
+	type: 'null',
+}],
+},
+		message_list: {
+	type: 'array',
+	contains: {
+		type: 'MessageBase',
+	},
 	isRequired: true,
 },
 	},
@@ -637,6 +690,73 @@ export const $ListSourceDataViewModel_Output = {
 	isRequired: true,
 },
 	},
+} as const;
+
+export const $MessageBase = {
+	description: `Base class for user queries and agent responses
+
+@param id: the id of the message
+@type id: int
+@param content: the content of the message
+@type content: str
+@param timestamp: the datetime when the message was sent
+@type timestamp: datetime
+@param sender: the name of the sender of the message
+@type sender: str
+@param sender_type: the type of the sender of the message
+@type sender_type: MessageSenderTypeEnum`,
+	properties: {
+		created_at: {
+	type: 'string',
+	isRequired: true,
+	format: 'date-time',
+},
+		updated_at: {
+	type: 'string',
+	isRequired: true,
+	format: 'date-time',
+},
+		deleted: {
+	type: 'boolean',
+	isRequired: true,
+},
+		deleted_at: {
+	type: 'any-of',
+	contains: [{
+	type: 'string',
+	format: 'date-time',
+}, {
+	type: 'null',
+}],
+	isRequired: true,
+},
+		id: {
+	type: 'number',
+	isRequired: true,
+},
+		content: {
+	type: 'string',
+	isRequired: true,
+},
+		timestamp: {
+	type: 'string',
+	isRequired: true,
+	format: 'date-time',
+},
+		sender: {
+	type: 'string',
+	isRequired: true,
+},
+		sender_type: {
+	type: 'MessageSenderTypeEnum',
+	isRequired: true,
+},
+	},
+} as const;
+
+export const $MessageSenderTypeEnum = {
+	type: 'Enum',
+	enum: ['user','agent',],
 } as const;
 
 export const $NewConversationViewModel = {
