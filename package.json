@@ -1,6 +1,6 @@
 {
   "name": "@maany_shr/kernel-planckster-sdk-ts",
-  "version": "1.0.0-beta",
+  "version": "2.0.0-alpha",
   "description": "A TypeScript client sdk for Kernel Planckster, the meteadata store for SDA Planckster suite",
   "repository": {
     "type": "git",

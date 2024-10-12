@@ -2,10 +2,10 @@ import type { CancelablePromise } from './core/CancelablePromise';
 import { OpenAPI } from './core/OpenAPI';
 import { request as __request } from './core/request';
 
-import type { ListMessagesViewModel_Input,CreateDefaultDataViewModel,DemoViewModel,GetClientDataForDownloadViewModel,GetClientDataForUploadViewModel,ListConversationsViewModel,ListResearchContextsViewModel,ListSourceDataForResearchContextViewModel_Input,ListSourceDataViewModel_Input,NewConversationViewModel,NewMessageViewModel,NewResearchContextViewModel,NewSourceDataViewModel_Input } from './models';
+import type { ListSourceDataForResearchContextViewModel_Input,BaseMessageContent,CreateDefaultDataViewModel,DemoViewModel,GetClientDataForDownloadViewModel,GetClientDataForUploadViewModel,ListConversationsViewModel,ListMessagesViewModel_Input,ListResearchContextsViewModel,ListSourceDataViewModel_Input,NewConversationViewModel,NewMessageViewModel,NewResearchContextViewModel,NewSourceDataViewModel_Input } from './models';
 
-export type ListMessagesData = {
-        ListMessages: {
+export type ListSourceDataForResearchContextData = {
+        ListSourceDataForResearchContext: {
                     id: number
 xAuthToken: string
                     
@@ -13,32 +13,15 @@ xAuthToken: string
     }
 
 export type ClientData = {
-        ListMessages: {
+        ListSourceDataForResearchContext: {
                     id: number
 xAuthToken: string
                     
                 };
-CreateConversation: {
-                    conversationTitle: string
-id: number
-xAuthToken: string
-                    
-                };
-ListConversations: {
+GetClientDataForUpload: {
                     id: number
-xAuthToken: string
-                    
-                };
-RegisterSourceData: {
-                    id: number
-sourceDataName: string
-sourceDataProtocol: string
-sourceDataRelativePath: string
-xAuthToken: string
-                    
-                };
-ListSourceData: {
-                    id: number | null
+protocol: string
+relativePath: string
 xAuthToken: string
                     
                 };
@@ -47,36 +30,16 @@ SumFeature: {
 num2: number
                     
                 };
-GetClientDataForDownload: {
-                    id: number
-protocol: string
-relativePath: string
+ListSourceData: {
+                    id: number | null
 xAuthToken: string
                     
                 };
-ListResearchContexts: {
+RegisterSourceData: {
                     id: number
-xAuthToken: string
-                    
-                };
-GetClientDataForUpload: {
-                    id: number
-protocol: string
-relativePath: string
-xAuthToken: string
-                    
-                };
-CreateDefaultData: {
-                    clientSub: string
-llmName: string
-xAuthToken: string
-                    
-                };
-CreateMessage: {
-                    id: number
-messageContent: string
-senderType: string
-unixTimestamp: number
+sourceDataName: string
+sourceDataProtocol: string
+sourceDataRelativePath: string
 xAuthToken: string
                     
                 };
@@ -86,19 +49,6 @@ llmName?: string | null
 requestBody: Array<number>
 researchContextDescription: string
 researchContextTitle: string
-xAuthToken: string
-                    
-                };
-ListSourceDataForResearchContext: {
-                    id: number
-xAuthToken: string
-                    
-                };
-    }
-
-export type ProtectedData = {
-        ListMessages: {
-                    id: number
 xAuthToken: string
                     
                 };
@@ -113,32 +63,30 @@ ListConversations: {
 xAuthToken: string
                     
                 };
-RegisterSourceData: {
-                    id: number
-sourceDataName: string
-sourceDataProtocol: string
-sourceDataRelativePath: string
-xAuthToken: string
-                    
-                };
-ListSourceData: {
-                    id: number | null
-xAuthToken: string
-                    
-                };
-GetClientDataForDownload: {
-                    id: number
-protocol: string
-relativePath: string
-xAuthToken: string
-                    
-                };
 ListResearchContexts: {
                     id: number
 xAuthToken: string
                     
                 };
-GetClientDataForUpload: {
+CreateMessage: {
+                    id: number
+requestBody: Array<BaseMessageContent>
+senderType: string
+threadId?: number | null
+xAuthToken: string
+                    
+                };
+ExtendResearchContext: {
+                    clientSub: string
+existingResearchContextId: number
+llmName: string
+newResearchContextDescription: string
+newResearchContextTitle: string
+requestBody: Array<number>
+xAuthToken: string
+                    
+                };
+GetClientDataForDownload: {
                     id: number
 protocol: string
 relativePath: string
@@ -151,11 +99,36 @@ llmName: string
 xAuthToken: string
                     
                 };
-CreateMessage: {
+ListMessages: {
                     id: number
-messageContent: string
-senderType: string
-unixTimestamp: number
+xAuthToken: string
+                    
+                };
+    }
+
+export type ProtectedData = {
+        ListSourceDataForResearchContext: {
+                    id: number
+xAuthToken: string
+                    
+                };
+GetClientDataForUpload: {
+                    id: number
+protocol: string
+relativePath: string
+xAuthToken: string
+                    
+                };
+ListSourceData: {
+                    id: number | null
+xAuthToken: string
+                    
+                };
+RegisterSourceData: {
+                    id: number
+sourceDataName: string
+sourceDataProtocol: string
+sourceDataRelativePath: string
 xAuthToken: string
                     
                 };
@@ -168,7 +141,54 @@ researchContextTitle: string
 xAuthToken: string
                     
                 };
-ListSourceDataForResearchContext: {
+CreateConversation: {
+                    conversationTitle: string
+id: number
+xAuthToken: string
+                    
+                };
+ListConversations: {
+                    id: number
+xAuthToken: string
+                    
+                };
+ListResearchContexts: {
+                    id: number
+xAuthToken: string
+                    
+                };
+CreateMessage: {
+                    id: number
+requestBody: Array<BaseMessageContent>
+senderType: string
+threadId?: number | null
+xAuthToken: string
+                    
+                };
+ExtendResearchContext: {
+                    clientSub: string
+existingResearchContextId: number
+llmName: string
+newResearchContextDescription: string
+newResearchContextTitle: string
+requestBody: Array<number>
+xAuthToken: string
+                    
+                };
+GetClientDataForDownload: {
+                    id: number
+protocol: string
+relativePath: string
+xAuthToken: string
+                    
+                };
+CreateDefaultData: {
+                    clientSub: string
+llmName: string
+xAuthToken: string
+                    
+                };
+ListMessages: {
                     id: number
 xAuthToken: string
                     
@@ -179,37 +199,11 @@ export type HealthCheckData = {
         
     }
 
-export type CreateConversationData = {
-        CreateConversation: {
-                    conversationTitle: string
-id: number
-xAuthToken: string
-                    
-                };
-    }
-
-export type ListConversationsData = {
-        ListConversations: {
+export type GetClientDataForUploadData = {
+        GetClientDataForUpload: {
                     id: number
-xAuthToken: string
-                    
-                };
-    }
-
-export type RegisterSourceDataData = {
-        RegisterSourceData: {
-                    id: number
-sourceDataName: string
-sourceDataProtocol: string
-sourceDataRelativePath: string
-xAuthToken: string
-                    
-                };
-    }
-
-export type ListSourceDataData = {
-        ListSourceData: {
-                    id: number | null
+protocol: string
+relativePath: string
 xAuthToken: string
                     
                 };
@@ -231,49 +225,20 @@ num2: number
                 };
     }
 
-export type GetClientDataForDownloadData = {
-        GetClientDataForDownload: {
-                    id: number
-protocol: string
-relativePath: string
+export type ListSourceDataData = {
+        ListSourceData: {
+                    id: number | null
 xAuthToken: string
                     
                 };
     }
 
-export type ListResearchContextsData = {
-        ListResearchContexts: {
+export type RegisterSourceDataData = {
+        RegisterSourceData: {
                     id: number
-xAuthToken: string
-                    
-                };
-    }
-
-export type GetClientDataForUploadData = {
-        GetClientDataForUpload: {
-                    id: number
-protocol: string
-relativePath: string
-xAuthToken: string
-                    
-                };
-    }
-
-export type CreateDefaultDataData = {
-        CreateDefaultData: {
-                    clientSub: string
-llmName: string
-xAuthToken: string
-                    
-                };
-    }
-
-export type CreateMessageData = {
-        CreateMessage: {
-                    id: number
-messageContent: string
-senderType: string
-unixTimestamp: number
+sourceDataName: string
+sourceDataProtocol: string
+sourceDataRelativePath: string
 xAuthToken: string
                     
                 };
@@ -291,30 +256,98 @@ xAuthToken: string
                 };
     }
 
-export type ListSourceDataForResearchContextData = {
-        ListSourceDataForResearchContext: {
+export type CreateConversationData = {
+        CreateConversation: {
+                    conversationTitle: string
+id: number
+xAuthToken: string
+                    
+                };
+    }
+
+export type ListConversationsData = {
+        ListConversations: {
                     id: number
 xAuthToken: string
                     
                 };
     }
 
-export class ListMessagesService {
+export type ListResearchContextsData = {
+        ListResearchContexts: {
+                    id: number
+xAuthToken: string
+                    
+                };
+    }
+
+export type CreateMessageData = {
+        CreateMessage: {
+                    id: number
+requestBody: Array<BaseMessageContent>
+senderType: string
+threadId?: number | null
+xAuthToken: string
+                    
+                };
+    }
+
+export type ExtendResearchContextData = {
+        ExtendResearchContext: {
+                    clientSub: string
+existingResearchContextId: number
+llmName: string
+newResearchContextDescription: string
+newResearchContextTitle: string
+requestBody: Array<number>
+xAuthToken: string
+                    
+                };
+    }
+
+export type GetClientDataForDownloadData = {
+        GetClientDataForDownload: {
+                    id: number
+protocol: string
+relativePath: string
+xAuthToken: string
+                    
+                };
+    }
+
+export type CreateDefaultDataData = {
+        CreateDefaultData: {
+                    clientSub: string
+llmName: string
+xAuthToken: string
+                    
+                };
+    }
+
+export type ListMessagesData = {
+        ListMessages: {
+                    id: number
+xAuthToken: string
+                    
+                };
+    }
+
+export class ListSourceDataForResearchContextService {
 
 	/**
-	 * List Messages
-	 * List all messages in a conversation
-	 * @returns ListMessagesViewModel_Input Success
+	 * List Source Data For Research Context
+	 * List all source data registered in the database for a given research context
+	 * @returns ListSourceDataForResearchContextViewModel_Input Success
 	 * @throws ApiError
 	 */
-	public static listMessages(data: ListMessagesData['ListMessages']): CancelablePromise<ListMessagesViewModel_Input> {
+	public static listSourceDataForResearchContext(data: ListSourceDataForResearchContextData['ListSourceDataForResearchContext']): CancelablePromise<ListSourceDataForResearchContextViewModel_Input> {
 		const {
 id,
 xAuthToken,
 } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
-			url: '/conversations/{id}/message',
+			url: '/research-context/{id}/source',
 			path: {
 				id
 			},
@@ -334,25 +367,179 @@ xAuthToken,
 export class ClientService {
 
 	/**
-	 * List Messages
-	 * List all messages in a conversation
-	 * @returns ListMessagesViewModel_Input Success
+	 * List Source Data For Research Context
+	 * List all source data registered in the database for a given research context
+	 * @returns ListSourceDataForResearchContextViewModel_Input Success
 	 * @throws ApiError
 	 */
-	public static listMessages(data: ClientData['ListMessages']): CancelablePromise<ListMessagesViewModel_Input> {
+	public static listSourceDataForResearchContext(data: ClientData['ListSourceDataForResearchContext']): CancelablePromise<ListSourceDataForResearchContextViewModel_Input> {
 		const {
 id,
 xAuthToken,
 } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
-			url: '/conversations/{id}/message',
+			url: '/research-context/{id}/source',
 			path: {
 				id
 			},
 			headers: {
 				'x-auth-token': xAuthToken
 			},
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+	/**
+	 * Get Client Data For Upload
+	 * Get the data required to upload a file to one of the storage services
+	 * @returns GetClientDataForUploadViewModel Success
+	 * @throws ApiError
+	 */
+	public static getClientDataForUpload(data: ClientData['GetClientDataForUpload']): CancelablePromise<GetClientDataForUploadViewModel> {
+		const {
+id,
+protocol,
+relativePath,
+xAuthToken,
+} = data;
+		return __request(OpenAPI, {
+			method: 'GET',
+			url: '/client/{id}/upload-credentials',
+			path: {
+				id
+			},
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				protocol, relative_path: relativePath
+			},
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+	/**
+	 * Sum Feature
+	 * Adds 2 numbers
+	 * @returns DemoViewModel Success
+	 * @throws ApiError
+	 */
+	public static sumFeature(data: ClientData['SumFeature']): CancelablePromise<DemoViewModel> {
+		const {
+num1,
+num2,
+} = data;
+		return __request(OpenAPI, {
+			method: 'GET',
+			url: '/sum',
+			query: {
+				num1, num2
+			},
+			errors: {
+				400: `Bad Request`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+	/**
+	 * List Source Data
+	 * List all source data registered in the database for a given Client
+	 * @returns ListSourceDataViewModel_Input Success
+	 * @throws ApiError
+	 */
+	public static listSourceData(data: ClientData['ListSourceData']): CancelablePromise<ListSourceDataViewModel_Input> {
+		const {
+id,
+xAuthToken,
+} = data;
+		return __request(OpenAPI, {
+			method: 'GET',
+			url: '/client/{id}/source',
+			path: {
+				id
+			},
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+	/**
+	 * Register Source Data
+	 * Register a new source data in the database
+	 * @returns NewSourceDataViewModel_Input Success
+	 * @throws ApiError
+	 */
+	public static registerSourceData(data: ClientData['RegisterSourceData']): CancelablePromise<NewSourceDataViewModel_Input> {
+		const {
+id,
+sourceDataName,
+sourceDataRelativePath,
+sourceDataProtocol,
+xAuthToken,
+} = data;
+		return __request(OpenAPI, {
+			method: 'POST',
+			url: '/client/{id}/source',
+			path: {
+				id
+			},
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				source_data_name: sourceDataName, source_data_relative_path: sourceDataRelativePath, source_data_protocol: sourceDataProtocol
+			},
+			errors: {
+				400: `Bad Request. Research Context ID does not exist`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+	/**
+	 * Create Research Context
+	 * Create a new research context from a subset of the available source data for a client
+	 * @returns NewResearchContextViewModel Success
+	 * @throws ApiError
+	 */
+	public static createResearchContext(data: ClientData['CreateResearchContext']): CancelablePromise<NewResearchContextViewModel> {
+		const {
+researchContextTitle,
+researchContextDescription,
+xAuthToken,
+requestBody,
+clientSub,
+llmName,
+} = data;
+		return __request(OpenAPI, {
+			method: 'POST',
+			url: '/research-context',
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				research_context_title: researchContextTitle, research_context_description: researchContextDescription, client_sub: clientSub, llm_name: llmName
+			},
+			body: requestBody,
+			mediaType: 'application/json',
 			errors: {
 				400: `Bad Request.`,
 				422: `Validation Error`,
@@ -422,126 +609,6 @@ xAuthToken,
 	}
 
 	/**
-	 * Register Source Data
-	 * Register a new source data in the database
-	 * @returns NewSourceDataViewModel_Input Success
-	 * @throws ApiError
-	 */
-	public static registerSourceData(data: ClientData['RegisterSourceData']): CancelablePromise<NewSourceDataViewModel_Input> {
-		const {
-id,
-sourceDataName,
-sourceDataRelativePath,
-sourceDataProtocol,
-xAuthToken,
-} = data;
-		return __request(OpenAPI, {
-			method: 'POST',
-			url: '/client/{id}/source',
-			path: {
-				id
-			},
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			query: {
-				source_data_name: sourceDataName, source_data_relative_path: sourceDataRelativePath, source_data_protocol: sourceDataProtocol
-			},
-			errors: {
-				400: `Bad Request. Research Context ID does not exist`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-	/**
-	 * List Source Data
-	 * List all source data registered in the database for a given Client
-	 * @returns ListSourceDataViewModel_Input Success
-	 * @throws ApiError
-	 */
-	public static listSourceData(data: ClientData['ListSourceData']): CancelablePromise<ListSourceDataViewModel_Input> {
-		const {
-id,
-xAuthToken,
-} = data;
-		return __request(OpenAPI, {
-			method: 'GET',
-			url: '/client/{id}/source',
-			path: {
-				id
-			},
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			errors: {
-				400: `Bad Request.`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-	/**
-	 * Sum Feature
-	 * Adds 2 numbers
-	 * @returns DemoViewModel Success
-	 * @throws ApiError
-	 */
-	public static sumFeature(data: ClientData['SumFeature']): CancelablePromise<DemoViewModel> {
-		const {
-num1,
-num2,
-} = data;
-		return __request(OpenAPI, {
-			method: 'GET',
-			url: '/sum',
-			query: {
-				num1, num2
-			},
-			errors: {
-				400: `Bad Request`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-	/**
-	 * Get Client Data For Download
-	 * Get the data required to download a file from one of the storage services
-	 * @returns GetClientDataForDownloadViewModel Success
-	 * @throws ApiError
-	 */
-	public static getClientDataForDownload(data: ClientData['GetClientDataForDownload']): CancelablePromise<GetClientDataForDownloadViewModel> {
-		const {
-id,
-protocol,
-relativePath,
-xAuthToken,
-} = data;
-		return __request(OpenAPI, {
-			method: 'GET',
-			url: '/client/{id}/download-credentials',
-			path: {
-				id
-			},
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			query: {
-				protocol, relative_path: relativePath
-			},
-			errors: {
-				400: `Bad Request.`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-	/**
 	 * List Research Contexts
 	 * List all research contexts in the database for a given user
 	 * @returns ListResearchContextsViewModel Success
@@ -570,12 +637,83 @@ xAuthToken,
 	}
 
 	/**
-	 * Get Client Data For Upload
-	 * Get the data required to upload a file to one of the storage services
-	 * @returns GetClientDataForUploadViewModel Success
+	 * Create Message
+	 * Create a new message in a conversation
+	 * @returns NewMessageViewModel Success
 	 * @throws ApiError
 	 */
-	public static getClientDataForUpload(data: ClientData['GetClientDataForUpload']): CancelablePromise<GetClientDataForUploadViewModel> {
+	public static createMessage(data: ClientData['CreateMessage']): CancelablePromise<NewMessageViewModel> {
+		const {
+id,
+senderType,
+xAuthToken,
+requestBody,
+threadId,
+} = data;
+		return __request(OpenAPI, {
+			method: 'POST',
+			url: '/conversation/{id}/message',
+			path: {
+				id
+			},
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				sender_type: senderType, thread_id: threadId
+			},
+			body: requestBody,
+			mediaType: 'application/json',
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+	/**
+	 * Extend Research Context
+	 * Create a new research context incorporating source data from an existing context with new source data from the client
+	 * @returns NewResearchContextViewModel Success
+	 * @throws ApiError
+	 */
+	public static extendResearchContext(data: ClientData['ExtendResearchContext']): CancelablePromise<NewResearchContextViewModel> {
+		const {
+newResearchContextTitle,
+newResearchContextDescription,
+existingResearchContextId,
+clientSub,
+llmName,
+xAuthToken,
+requestBody,
+} = data;
+		return __request(OpenAPI, {
+			method: 'POST',
+			url: '/research-context/extend',
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				new_research_context_title: newResearchContextTitle, new_research_context_description: newResearchContextDescription, existing_research_context_id: existingResearchContextId, client_sub: clientSub, llm_name: llmName
+			},
+			body: requestBody,
+			mediaType: 'application/json',
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+	/**
+	 * Get Client Data For Download
+	 * Get the data required to download a file from one of the storage services
+	 * @returns GetClientDataForDownloadViewModel Success
+	 * @throws ApiError
+	 */
+	public static getClientDataForDownload(data: ClientData['GetClientDataForDownload']): CancelablePromise<GetClientDataForDownloadViewModel> {
 		const {
 id,
 protocol,
@@ -584,7 +722,7 @@ xAuthToken,
 } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
-			url: '/client/{id}/upload-credentials',
+			url: '/client/{id}/download-credentials',
 			path: {
 				id
 			},
@@ -632,30 +770,24 @@ xAuthToken,
 	}
 
 	/**
-	 * Create Message
-	 * Create a new message in a conversation
-	 * @returns NewMessageViewModel Success
+	 * List Messages
+	 * List all messages in a conversation
+	 * @returns ListMessagesViewModel_Input Success
 	 * @throws ApiError
 	 */
-	public static createMessage(data: ClientData['CreateMessage']): CancelablePromise<NewMessageViewModel> {
+	public static listMessages(data: ClientData['ListMessages']): CancelablePromise<ListMessagesViewModel_Input> {
 		const {
 id,
-messageContent,
-senderType,
-unixTimestamp,
 xAuthToken,
 } = data;
 		return __request(OpenAPI, {
-			method: 'POST',
-			url: '/conversation/{id}/message',
+			method: 'GET',
+			url: '/conversations/{id}/message',
 			path: {
 				id
 			},
 			headers: {
 				'x-auth-token': xAuthToken
-			},
-			query: {
-				message_content: messageContent, sender_type: senderType, unix_timestamp: unixTimestamp
 			},
 			errors: {
 				400: `Bad Request.`,
@@ -665,39 +797,9 @@ xAuthToken,
 		});
 	}
 
-	/**
-	 * Create Research Context
-	 * Create a new research context from a subset of the available source data for a client
-	 * @returns NewResearchContextViewModel Success
-	 * @throws ApiError
-	 */
-	public static createResearchContext(data: ClientData['CreateResearchContext']): CancelablePromise<NewResearchContextViewModel> {
-		const {
-researchContextTitle,
-researchContextDescription,
-xAuthToken,
-requestBody,
-clientSub,
-llmName,
-} = data;
-		return __request(OpenAPI, {
-			method: 'POST',
-			url: '/research-context',
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			query: {
-				research_context_title: researchContextTitle, research_context_description: researchContextDescription, client_sub: clientSub, llm_name: llmName
-			},
-			body: requestBody,
-			mediaType: 'application/json',
-			errors: {
-				400: `Bad Request.`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
+}
+
+export class ProtectedService {
 
 	/**
 	 * List Source Data For Research Context
@@ -705,7 +807,7 @@ llmName,
 	 * @returns ListSourceDataForResearchContextViewModel_Input Success
 	 * @throws ApiError
 	 */
-	public static listSourceDataForResearchContext(data: ClientData['ListSourceDataForResearchContext']): CancelablePromise<ListSourceDataForResearchContextViewModel_Input> {
+	public static listSourceDataForResearchContext(data: ProtectedData['ListSourceDataForResearchContext']): CancelablePromise<ListSourceDataForResearchContextViewModel_Input> {
 		const {
 id,
 xAuthToken,
@@ -727,30 +829,127 @@ xAuthToken,
 		});
 	}
 
-}
-
-export class ProtectedService {
-
 	/**
-	 * List Messages
-	 * List all messages in a conversation
-	 * @returns ListMessagesViewModel_Input Success
+	 * Get Client Data For Upload
+	 * Get the data required to upload a file to one of the storage services
+	 * @returns GetClientDataForUploadViewModel Success
 	 * @throws ApiError
 	 */
-	public static listMessages(data: ProtectedData['ListMessages']): CancelablePromise<ListMessagesViewModel_Input> {
+	public static getClientDataForUpload(data: ProtectedData['GetClientDataForUpload']): CancelablePromise<GetClientDataForUploadViewModel> {
 		const {
 id,
+protocol,
+relativePath,
 xAuthToken,
 } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
-			url: '/conversations/{id}/message',
+			url: '/client/{id}/upload-credentials',
 			path: {
 				id
 			},
 			headers: {
 				'x-auth-token': xAuthToken
 			},
+			query: {
+				protocol, relative_path: relativePath
+			},
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+	/**
+	 * List Source Data
+	 * List all source data registered in the database for a given Client
+	 * @returns ListSourceDataViewModel_Input Success
+	 * @throws ApiError
+	 */
+	public static listSourceData(data: ProtectedData['ListSourceData']): CancelablePromise<ListSourceDataViewModel_Input> {
+		const {
+id,
+xAuthToken,
+} = data;
+		return __request(OpenAPI, {
+			method: 'GET',
+			url: '/client/{id}/source',
+			path: {
+				id
+			},
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+	/**
+	 * Register Source Data
+	 * Register a new source data in the database
+	 * @returns NewSourceDataViewModel_Input Success
+	 * @throws ApiError
+	 */
+	public static registerSourceData(data: ProtectedData['RegisterSourceData']): CancelablePromise<NewSourceDataViewModel_Input> {
+		const {
+id,
+sourceDataName,
+sourceDataRelativePath,
+sourceDataProtocol,
+xAuthToken,
+} = data;
+		return __request(OpenAPI, {
+			method: 'POST',
+			url: '/client/{id}/source',
+			path: {
+				id
+			},
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				source_data_name: sourceDataName, source_data_relative_path: sourceDataRelativePath, source_data_protocol: sourceDataProtocol
+			},
+			errors: {
+				400: `Bad Request. Research Context ID does not exist`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+	/**
+	 * Create Research Context
+	 * Create a new research context from a subset of the available source data for a client
+	 * @returns NewResearchContextViewModel Success
+	 * @throws ApiError
+	 */
+	public static createResearchContext(data: ProtectedData['CreateResearchContext']): CancelablePromise<NewResearchContextViewModel> {
+		const {
+researchContextTitle,
+researchContextDescription,
+xAuthToken,
+requestBody,
+clientSub,
+llmName,
+} = data;
+		return __request(OpenAPI, {
+			method: 'POST',
+			url: '/research-context',
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				research_context_title: researchContextTitle, research_context_description: researchContextDescription, client_sub: clientSub, llm_name: llmName
+			},
+			body: requestBody,
+			mediaType: 'application/json',
 			errors: {
 				400: `Bad Request.`,
 				422: `Validation Error`,
@@ -820,101 +1019,6 @@ xAuthToken,
 	}
 
 	/**
-	 * Register Source Data
-	 * Register a new source data in the database
-	 * @returns NewSourceDataViewModel_Input Success
-	 * @throws ApiError
-	 */
-	public static registerSourceData(data: ProtectedData['RegisterSourceData']): CancelablePromise<NewSourceDataViewModel_Input> {
-		const {
-id,
-sourceDataName,
-sourceDataRelativePath,
-sourceDataProtocol,
-xAuthToken,
-} = data;
-		return __request(OpenAPI, {
-			method: 'POST',
-			url: '/client/{id}/source',
-			path: {
-				id
-			},
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			query: {
-				source_data_name: sourceDataName, source_data_relative_path: sourceDataRelativePath, source_data_protocol: sourceDataProtocol
-			},
-			errors: {
-				400: `Bad Request. Research Context ID does not exist`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-	/**
-	 * List Source Data
-	 * List all source data registered in the database for a given Client
-	 * @returns ListSourceDataViewModel_Input Success
-	 * @throws ApiError
-	 */
-	public static listSourceData(data: ProtectedData['ListSourceData']): CancelablePromise<ListSourceDataViewModel_Input> {
-		const {
-id,
-xAuthToken,
-} = data;
-		return __request(OpenAPI, {
-			method: 'GET',
-			url: '/client/{id}/source',
-			path: {
-				id
-			},
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			errors: {
-				400: `Bad Request.`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-	/**
-	 * Get Client Data For Download
-	 * Get the data required to download a file from one of the storage services
-	 * @returns GetClientDataForDownloadViewModel Success
-	 * @throws ApiError
-	 */
-	public static getClientDataForDownload(data: ProtectedData['GetClientDataForDownload']): CancelablePromise<GetClientDataForDownloadViewModel> {
-		const {
-id,
-protocol,
-relativePath,
-xAuthToken,
-} = data;
-		return __request(OpenAPI, {
-			method: 'GET',
-			url: '/client/{id}/download-credentials',
-			path: {
-				id
-			},
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			query: {
-				protocol, relative_path: relativePath
-			},
-			errors: {
-				400: `Bad Request.`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-	/**
 	 * List Research Contexts
 	 * List all research contexts in the database for a given user
 	 * @returns ListResearchContextsViewModel Success
@@ -943,12 +1047,83 @@ xAuthToken,
 	}
 
 	/**
-	 * Get Client Data For Upload
-	 * Get the data required to upload a file to one of the storage services
-	 * @returns GetClientDataForUploadViewModel Success
+	 * Create Message
+	 * Create a new message in a conversation
+	 * @returns NewMessageViewModel Success
 	 * @throws ApiError
 	 */
-	public static getClientDataForUpload(data: ProtectedData['GetClientDataForUpload']): CancelablePromise<GetClientDataForUploadViewModel> {
+	public static createMessage(data: ProtectedData['CreateMessage']): CancelablePromise<NewMessageViewModel> {
+		const {
+id,
+senderType,
+xAuthToken,
+requestBody,
+threadId,
+} = data;
+		return __request(OpenAPI, {
+			method: 'POST',
+			url: '/conversation/{id}/message',
+			path: {
+				id
+			},
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				sender_type: senderType, thread_id: threadId
+			},
+			body: requestBody,
+			mediaType: 'application/json',
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+	/**
+	 * Extend Research Context
+	 * Create a new research context incorporating source data from an existing context with new source data from the client
+	 * @returns NewResearchContextViewModel Success
+	 * @throws ApiError
+	 */
+	public static extendResearchContext(data: ProtectedData['ExtendResearchContext']): CancelablePromise<NewResearchContextViewModel> {
+		const {
+newResearchContextTitle,
+newResearchContextDescription,
+existingResearchContextId,
+clientSub,
+llmName,
+xAuthToken,
+requestBody,
+} = data;
+		return __request(OpenAPI, {
+			method: 'POST',
+			url: '/research-context/extend',
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				new_research_context_title: newResearchContextTitle, new_research_context_description: newResearchContextDescription, existing_research_context_id: existingResearchContextId, client_sub: clientSub, llm_name: llmName
+			},
+			body: requestBody,
+			mediaType: 'application/json',
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+	/**
+	 * Get Client Data For Download
+	 * Get the data required to download a file from one of the storage services
+	 * @returns GetClientDataForDownloadViewModel Success
+	 * @throws ApiError
+	 */
+	public static getClientDataForDownload(data: ProtectedData['GetClientDataForDownload']): CancelablePromise<GetClientDataForDownloadViewModel> {
 		const {
 id,
 protocol,
@@ -957,7 +1132,7 @@ xAuthToken,
 } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
-			url: '/client/{id}/upload-credentials',
+			url: '/client/{id}/download-credentials',
 			path: {
 				id
 			},
@@ -1005,87 +1180,19 @@ xAuthToken,
 	}
 
 	/**
-	 * Create Message
-	 * Create a new message in a conversation
-	 * @returns NewMessageViewModel Success
+	 * List Messages
+	 * List all messages in a conversation
+	 * @returns ListMessagesViewModel_Input Success
 	 * @throws ApiError
 	 */
-	public static createMessage(data: ProtectedData['CreateMessage']): CancelablePromise<NewMessageViewModel> {
-		const {
-id,
-messageContent,
-senderType,
-unixTimestamp,
-xAuthToken,
-} = data;
-		return __request(OpenAPI, {
-			method: 'POST',
-			url: '/conversation/{id}/message',
-			path: {
-				id
-			},
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			query: {
-				message_content: messageContent, sender_type: senderType, unix_timestamp: unixTimestamp
-			},
-			errors: {
-				400: `Bad Request.`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-	/**
-	 * Create Research Context
-	 * Create a new research context from a subset of the available source data for a client
-	 * @returns NewResearchContextViewModel Success
-	 * @throws ApiError
-	 */
-	public static createResearchContext(data: ProtectedData['CreateResearchContext']): CancelablePromise<NewResearchContextViewModel> {
-		const {
-researchContextTitle,
-researchContextDescription,
-xAuthToken,
-requestBody,
-clientSub,
-llmName,
-} = data;
-		return __request(OpenAPI, {
-			method: 'POST',
-			url: '/research-context',
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			query: {
-				research_context_title: researchContextTitle, research_context_description: researchContextDescription, client_sub: clientSub, llm_name: llmName
-			},
-			body: requestBody,
-			mediaType: 'application/json',
-			errors: {
-				400: `Bad Request.`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-	/**
-	 * List Source Data For Research Context
-	 * List all source data registered in the database for a given research context
-	 * @returns ListSourceDataForResearchContextViewModel_Input Success
-	 * @throws ApiError
-	 */
-	public static listSourceDataForResearchContext(data: ProtectedData['ListSourceDataForResearchContext']): CancelablePromise<ListSourceDataForResearchContextViewModel_Input> {
+	public static listMessages(data: ProtectedData['ListMessages']): CancelablePromise<ListMessagesViewModel_Input> {
 		const {
 id,
 xAuthToken,
 } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
-			url: '/research-context/{id}/source',
+			url: '/conversations/{id}/message',
 			path: {
 				id
 			},
@@ -1114,6 +1221,209 @@ export class HealthCheckService {
 				return __request(OpenAPI, {
 			method: 'GET',
 			url: '/ping',
+		});
+	}
+
+}
+
+export class GetClientDataForUploadService {
+
+	/**
+	 * Get Client Data For Upload
+	 * Get the data required to upload a file to one of the storage services
+	 * @returns GetClientDataForUploadViewModel Success
+	 * @throws ApiError
+	 */
+	public static getClientDataForUpload(data: GetClientDataForUploadData['GetClientDataForUpload']): CancelablePromise<GetClientDataForUploadViewModel> {
+		const {
+id,
+protocol,
+relativePath,
+xAuthToken,
+} = data;
+		return __request(OpenAPI, {
+			method: 'GET',
+			url: '/client/{id}/upload-credentials',
+			path: {
+				id
+			},
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				protocol, relative_path: relativePath
+			},
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+}
+
+export class SumFeatureService {
+
+	/**
+	 * Sum Feature
+	 * Adds 2 numbers
+	 * @returns DemoViewModel Success
+	 * @throws ApiError
+	 */
+	public static sumFeature(data: SumFeatureData['SumFeature']): CancelablePromise<DemoViewModel> {
+		const {
+num1,
+num2,
+} = data;
+		return __request(OpenAPI, {
+			method: 'GET',
+			url: '/sum',
+			query: {
+				num1, num2
+			},
+			errors: {
+				400: `Bad Request`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+}
+
+export class PublicService {
+
+	/**
+	 * Sum Feature
+	 * Adds 2 numbers
+	 * @returns DemoViewModel Success
+	 * @throws ApiError
+	 */
+	public static sumFeature(data: PublicData['SumFeature']): CancelablePromise<DemoViewModel> {
+		const {
+num1,
+num2,
+} = data;
+		return __request(OpenAPI, {
+			method: 'GET',
+			url: '/sum',
+			query: {
+				num1, num2
+			},
+			errors: {
+				400: `Bad Request`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+}
+
+export class ListSourceDataService {
+
+	/**
+	 * List Source Data
+	 * List all source data registered in the database for a given Client
+	 * @returns ListSourceDataViewModel_Input Success
+	 * @throws ApiError
+	 */
+	public static listSourceData(data: ListSourceDataData['ListSourceData']): CancelablePromise<ListSourceDataViewModel_Input> {
+		const {
+id,
+xAuthToken,
+} = data;
+		return __request(OpenAPI, {
+			method: 'GET',
+			url: '/client/{id}/source',
+			path: {
+				id
+			},
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+}
+
+export class RegisterSourceDataService {
+
+	/**
+	 * Register Source Data
+	 * Register a new source data in the database
+	 * @returns NewSourceDataViewModel_Input Success
+	 * @throws ApiError
+	 */
+	public static registerSourceData(data: RegisterSourceDataData['RegisterSourceData']): CancelablePromise<NewSourceDataViewModel_Input> {
+		const {
+id,
+sourceDataName,
+sourceDataRelativePath,
+sourceDataProtocol,
+xAuthToken,
+} = data;
+		return __request(OpenAPI, {
+			method: 'POST',
+			url: '/client/{id}/source',
+			path: {
+				id
+			},
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				source_data_name: sourceDataName, source_data_relative_path: sourceDataRelativePath, source_data_protocol: sourceDataProtocol
+			},
+			errors: {
+				400: `Bad Request. Research Context ID does not exist`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+}
+
+export class CreateResearchContextService {
+
+	/**
+	 * Create Research Context
+	 * Create a new research context from a subset of the available source data for a client
+	 * @returns NewResearchContextViewModel Success
+	 * @throws ApiError
+	 */
+	public static createResearchContext(data: CreateResearchContextData['CreateResearchContext']): CancelablePromise<NewResearchContextViewModel> {
+		const {
+researchContextTitle,
+researchContextDescription,
+xAuthToken,
+requestBody,
+clientSub,
+llmName,
+} = data;
+		return __request(OpenAPI, {
+			method: 'POST',
+			url: '/research-context',
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				research_context_title: researchContextTitle, research_context_description: researchContextDescription, client_sub: clientSub, llm_name: llmName
+			},
+			body: requestBody,
+			mediaType: 'application/json',
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
 		});
 	}
 
@@ -1187,171 +1497,6 @@ xAuthToken,
 
 }
 
-export class RegisterSourceDataService {
-
-	/**
-	 * Register Source Data
-	 * Register a new source data in the database
-	 * @returns NewSourceDataViewModel_Input Success
-	 * @throws ApiError
-	 */
-	public static registerSourceData(data: RegisterSourceDataData['RegisterSourceData']): CancelablePromise<NewSourceDataViewModel_Input> {
-		const {
-id,
-sourceDataName,
-sourceDataRelativePath,
-sourceDataProtocol,
-xAuthToken,
-} = data;
-		return __request(OpenAPI, {
-			method: 'POST',
-			url: '/client/{id}/source',
-			path: {
-				id
-			},
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			query: {
-				source_data_name: sourceDataName, source_data_relative_path: sourceDataRelativePath, source_data_protocol: sourceDataProtocol
-			},
-			errors: {
-				400: `Bad Request. Research Context ID does not exist`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-}
-
-export class ListSourceDataService {
-
-	/**
-	 * List Source Data
-	 * List all source data registered in the database for a given Client
-	 * @returns ListSourceDataViewModel_Input Success
-	 * @throws ApiError
-	 */
-	public static listSourceData(data: ListSourceDataData['ListSourceData']): CancelablePromise<ListSourceDataViewModel_Input> {
-		const {
-id,
-xAuthToken,
-} = data;
-		return __request(OpenAPI, {
-			method: 'GET',
-			url: '/client/{id}/source',
-			path: {
-				id
-			},
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			errors: {
-				400: `Bad Request.`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-}
-
-export class SumFeatureService {
-
-	/**
-	 * Sum Feature
-	 * Adds 2 numbers
-	 * @returns DemoViewModel Success
-	 * @throws ApiError
-	 */
-	public static sumFeature(data: SumFeatureData['SumFeature']): CancelablePromise<DemoViewModel> {
-		const {
-num1,
-num2,
-} = data;
-		return __request(OpenAPI, {
-			method: 'GET',
-			url: '/sum',
-			query: {
-				num1, num2
-			},
-			errors: {
-				400: `Bad Request`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-}
-
-export class PublicService {
-
-	/**
-	 * Sum Feature
-	 * Adds 2 numbers
-	 * @returns DemoViewModel Success
-	 * @throws ApiError
-	 */
-	public static sumFeature(data: PublicData['SumFeature']): CancelablePromise<DemoViewModel> {
-		const {
-num1,
-num2,
-} = data;
-		return __request(OpenAPI, {
-			method: 'GET',
-			url: '/sum',
-			query: {
-				num1, num2
-			},
-			errors: {
-				400: `Bad Request`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-}
-
-export class GetClientDataForDownloadService {
-
-	/**
-	 * Get Client Data For Download
-	 * Get the data required to download a file from one of the storage services
-	 * @returns GetClientDataForDownloadViewModel Success
-	 * @throws ApiError
-	 */
-	public static getClientDataForDownload(data: GetClientDataForDownloadData['GetClientDataForDownload']): CancelablePromise<GetClientDataForDownloadViewModel> {
-		const {
-id,
-protocol,
-relativePath,
-xAuthToken,
-} = data;
-		return __request(OpenAPI, {
-			method: 'GET',
-			url: '/client/{id}/download-credentials',
-			path: {
-				id
-			},
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			query: {
-				protocol, relative_path: relativePath
-			},
-			errors: {
-				400: `Bad Request.`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-}
-
 export class ListResearchContextsService {
 
 	/**
@@ -1384,15 +1529,94 @@ xAuthToken,
 
 }
 
-export class GetClientDataForUploadService {
+export class CreateMessageService {
 
 	/**
-	 * Get Client Data For Upload
-	 * Get the data required to upload a file to one of the storage services
-	 * @returns GetClientDataForUploadViewModel Success
+	 * Create Message
+	 * Create a new message in a conversation
+	 * @returns NewMessageViewModel Success
 	 * @throws ApiError
 	 */
-	public static getClientDataForUpload(data: GetClientDataForUploadData['GetClientDataForUpload']): CancelablePromise<GetClientDataForUploadViewModel> {
+	public static createMessage(data: CreateMessageData['CreateMessage']): CancelablePromise<NewMessageViewModel> {
+		const {
+id,
+senderType,
+xAuthToken,
+requestBody,
+threadId,
+} = data;
+		return __request(OpenAPI, {
+			method: 'POST',
+			url: '/conversation/{id}/message',
+			path: {
+				id
+			},
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				sender_type: senderType, thread_id: threadId
+			},
+			body: requestBody,
+			mediaType: 'application/json',
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+}
+
+export class ExtendResearchContextService {
+
+	/**
+	 * Extend Research Context
+	 * Create a new research context incorporating source data from an existing context with new source data from the client
+	 * @returns NewResearchContextViewModel Success
+	 * @throws ApiError
+	 */
+	public static extendResearchContext(data: ExtendResearchContextData['ExtendResearchContext']): CancelablePromise<NewResearchContextViewModel> {
+		const {
+newResearchContextTitle,
+newResearchContextDescription,
+existingResearchContextId,
+clientSub,
+llmName,
+xAuthToken,
+requestBody,
+} = data;
+		return __request(OpenAPI, {
+			method: 'POST',
+			url: '/research-context/extend',
+			headers: {
+				'x-auth-token': xAuthToken
+			},
+			query: {
+				new_research_context_title: newResearchContextTitle, new_research_context_description: newResearchContextDescription, existing_research_context_id: existingResearchContextId, client_sub: clientSub, llm_name: llmName
+			},
+			body: requestBody,
+			mediaType: 'application/json',
+			errors: {
+				400: `Bad Request.`,
+				422: `Validation Error`,
+				500: `Internal Server Error`,
+			},
+		});
+	}
+
+}
+
+export class GetClientDataForDownloadService {
+
+	/**
+	 * Get Client Data For Download
+	 * Get the data required to download a file from one of the storage services
+	 * @returns GetClientDataForDownloadViewModel Success
+	 * @throws ApiError
+	 */
+	public static getClientDataForDownload(data: GetClientDataForDownloadData['GetClientDataForDownload']): CancelablePromise<GetClientDataForDownloadViewModel> {
 		const {
 id,
 protocol,
@@ -1401,7 +1625,7 @@ xAuthToken,
 } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
-			url: '/client/{id}/upload-credentials',
+			url: '/client/{id}/download-credentials',
 			path: {
 				id
 			},
@@ -1454,98 +1678,22 @@ xAuthToken,
 
 }
 
-export class CreateMessageService {
+export class ListMessagesService {
 
 	/**
-	 * Create Message
-	 * Create a new message in a conversation
-	 * @returns NewMessageViewModel Success
+	 * List Messages
+	 * List all messages in a conversation
+	 * @returns ListMessagesViewModel_Input Success
 	 * @throws ApiError
 	 */
-	public static createMessage(data: CreateMessageData['CreateMessage']): CancelablePromise<NewMessageViewModel> {
-		const {
-id,
-messageContent,
-senderType,
-unixTimestamp,
-xAuthToken,
-} = data;
-		return __request(OpenAPI, {
-			method: 'POST',
-			url: '/conversation/{id}/message',
-			path: {
-				id
-			},
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			query: {
-				message_content: messageContent, sender_type: senderType, unix_timestamp: unixTimestamp
-			},
-			errors: {
-				400: `Bad Request.`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-}
-
-export class CreateResearchContextService {
-
-	/**
-	 * Create Research Context
-	 * Create a new research context from a subset of the available source data for a client
-	 * @returns NewResearchContextViewModel Success
-	 * @throws ApiError
-	 */
-	public static createResearchContext(data: CreateResearchContextData['CreateResearchContext']): CancelablePromise<NewResearchContextViewModel> {
-		const {
-researchContextTitle,
-researchContextDescription,
-xAuthToken,
-requestBody,
-clientSub,
-llmName,
-} = data;
-		return __request(OpenAPI, {
-			method: 'POST',
-			url: '/research-context',
-			headers: {
-				'x-auth-token': xAuthToken
-			},
-			query: {
-				research_context_title: researchContextTitle, research_context_description: researchContextDescription, client_sub: clientSub, llm_name: llmName
-			},
-			body: requestBody,
-			mediaType: 'application/json',
-			errors: {
-				400: `Bad Request.`,
-				422: `Validation Error`,
-				500: `Internal Server Error`,
-			},
-		});
-	}
-
-}
-
-export class ListSourceDataForResearchContextService {
-
-	/**
-	 * List Source Data For Research Context
-	 * List all source data registered in the database for a given research context
-	 * @returns ListSourceDataForResearchContextViewModel_Input Success
-	 * @throws ApiError
-	 */
-	public static listSourceDataForResearchContext(data: ListSourceDataForResearchContextData['ListSourceDataForResearchContext']): CancelablePromise<ListSourceDataForResearchContextViewModel_Input> {
+	public static listMessages(data: ListMessagesData['ListMessages']): CancelablePromise<ListMessagesViewModel_Input> {
 		const {
 id,
 xAuthToken,
 } = data;
 		return __request(OpenAPI, {
 			method: 'GET',
-			url: '/research-context/{id}/source',
+			url: '/conversations/{id}/message',
 			path: {
 				id
 			},

@@ -1,3 +1,22 @@
+export const $BaseMessageContent = {
+	description: `Represents a piece of content that can be part of a message.
+
+@param id: the ID of the message content
+@type id: int
+@param ontent: the content of the message
+@type content: str`,
+	properties: {
+		content: {
+	type: 'string',
+	isRequired: true,
+},
+		content_type: {
+	type: 'MessageContentTypeEnum',
+	isRequired: true,
+},
+	},
+} as const;
+
 export const $Conversation = {
 	description: `Represents a conversation between a user and an agent, within in a research context
 This is where messages will be exchanged
@@ -363,7 +382,7 @@ export const $ListMessagesViewModel_Input = {
 		message_list: {
 	type: 'array',
 	contains: {
-		type: 'MessageBase',
+		type: 'MessageBase_Input',
 	},
 	isRequired: true,
 },
@@ -416,7 +435,7 @@ export const $ListMessagesViewModel_Output = {
 		message_list: {
 	type: 'array',
 	contains: {
-		type: 'MessageBase',
+		type: 'MessageBase_Output',
 	},
 	isRequired: true,
 },
@@ -692,19 +711,17 @@ export const $ListSourceDataViewModel_Output = {
 	},
 } as const;
 
-export const $MessageBase = {
+export const $MessageBase_Input = {
 	description: `Base class for user queries and agent responses
 
 @param id: the id of the message
 @type id: int
-@param content: the content of the message
-@type content: str
-@param timestamp: the datetime when the message was sent
-@type timestamp: datetime
 @param sender: the name of the sender of the message
 @type sender: str
 @param sender_type: the type of the sender of the message
-@type sender_type: MessageSenderTypeEnum`,
+@type sender_type: MessageSenderTypeEnum
+@param message_contents: A list of the content pieces of the message
+@type message_contents: List[MessageContent]`,
 	properties: {
 		created_at: {
 	type: 'string',
@@ -734,14 +751,9 @@ export const $MessageBase = {
 	type: 'number',
 	isRequired: true,
 },
-		content: {
-	type: 'string',
+		thread_id: {
+	type: 'number',
 	isRequired: true,
-},
-		timestamp: {
-	type: 'string',
-	isRequired: true,
-	format: 'date-time',
 },
 		sender: {
 	type: 'string',
@@ -751,7 +763,123 @@ export const $MessageBase = {
 	type: 'MessageSenderTypeEnum',
 	isRequired: true,
 },
+		message_contents: {
+	type: 'array',
+	contains: {
+		type: 'MessageContent',
 	},
+	isRequired: true,
+},
+	},
+} as const;
+
+export const $MessageBase_Output = {
+	description: `Base class for user queries and agent responses
+
+@param id: the id of the message
+@type id: int
+@param sender: the name of the sender of the message
+@type sender: str
+@param sender_type: the type of the sender of the message
+@type sender_type: MessageSenderTypeEnum
+@param message_contents: A list of the content pieces of the message
+@type message_contents: List[MessageContent]`,
+	properties: {
+		created_at: {
+	type: 'string',
+	isRequired: true,
+	format: 'date-time',
+},
+		updated_at: {
+	type: 'string',
+	isRequired: true,
+	format: 'date-time',
+},
+		deleted: {
+	type: 'boolean',
+	isRequired: true,
+},
+		deleted_at: {
+	type: 'any-of',
+	contains: [{
+	type: 'string',
+	format: 'date-time',
+}, {
+	type: 'null',
+}],
+	isRequired: true,
+},
+		id: {
+	type: 'number',
+	isRequired: true,
+},
+		thread_id: {
+	type: 'number',
+	isRequired: true,
+},
+		sender: {
+	type: 'string',
+	isRequired: true,
+},
+		sender_type: {
+	type: 'MessageSenderTypeEnum',
+	isRequired: true,
+},
+		message_contents: {
+	type: 'array',
+	contains: {
+		type: 'MessageContent',
+	},
+	isRequired: true,
+},
+	},
+} as const;
+
+export const $MessageContent = {
+	description: `Represents the pieces of content that can comprise an existing message.`,
+	properties: {
+		created_at: {
+	type: 'string',
+	isRequired: true,
+	format: 'date-time',
+},
+		updated_at: {
+	type: 'string',
+	isRequired: true,
+	format: 'date-time',
+},
+		deleted: {
+	type: 'boolean',
+	isRequired: true,
+},
+		deleted_at: {
+	type: 'any-of',
+	contains: [{
+	type: 'string',
+	format: 'date-time',
+}, {
+	type: 'null',
+}],
+	isRequired: true,
+},
+		content: {
+	type: 'string',
+	isRequired: true,
+},
+		content_type: {
+	type: 'MessageContentTypeEnum',
+	isRequired: true,
+},
+		id: {
+	type: 'number',
+	isRequired: true,
+},
+	},
+} as const;
+
+export const $MessageContentTypeEnum = {
+	type: 'Enum',
+	enum: ['text','image','citation',],
 } as const;
 
 export const $MessageSenderTypeEnum = {

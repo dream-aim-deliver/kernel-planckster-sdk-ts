@@ -1,4 +1,19 @@
 /**
+ * Represents a piece of content that can be part of a message.
+ * 
+ * @param id: the ID of the message content
+ * @type id: int
+ * @param ontent: the content of the message
+ * @type content: str
+ */
+export type BaseMessageContent = {
+	content: string;
+	content_type: MessageContentTypeEnum;
+};
+
+
+
+/**
  * Represents a conversation between a user and an agent, within in a research context
  * This is where messages will be exchanged
  * 
@@ -130,7 +145,7 @@ export type ListMessagesViewModel_Input = {
 	/**
 	 * List of all messages in the database for a given conversation.
 	 */
-	message_list: Array<MessageBase>;
+	message_list: Array<MessageBase_Input>;
 };
 
 
@@ -148,7 +163,7 @@ export type ListMessagesViewModel_Output = {
 	/**
 	 * List of all messages in the database for a given conversation.
 	 */
-	message_list: Array<MessageBase>;
+	message_list: Array<MessageBase_Output>;
 };
 
 
@@ -249,26 +264,75 @@ export type ListSourceDataViewModel_Output = {
  * 
  * @param id: the id of the message
  * @type id: int
- * @param content: the content of the message
- * @type content: str
- * @param timestamp: the datetime when the message was sent
- * @type timestamp: datetime
  * @param sender: the name of the sender of the message
  * @type sender: str
  * @param sender_type: the type of the sender of the message
  * @type sender_type: MessageSenderTypeEnum
+ * @param message_contents: A list of the content pieces of the message
+ * @type message_contents: List[MessageContent]
  */
-export type MessageBase = {
+export type MessageBase_Input = {
 	created_at: string;
 	updated_at: string;
 	deleted: boolean;
 	deleted_at: string | null;
 	id: number;
-	content: string;
-	timestamp: string;
+	thread_id: number;
 	sender: string;
 	sender_type: MessageSenderTypeEnum;
+	message_contents: Array<MessageContent>;
 };
+
+
+
+/**
+ * Base class for user queries and agent responses
+ * 
+ * @param id: the id of the message
+ * @type id: int
+ * @param sender: the name of the sender of the message
+ * @type sender: str
+ * @param sender_type: the type of the sender of the message
+ * @type sender_type: MessageSenderTypeEnum
+ * @param message_contents: A list of the content pieces of the message
+ * @type message_contents: List[MessageContent]
+ */
+export type MessageBase_Output = {
+	created_at: string;
+	updated_at: string;
+	deleted: boolean;
+	deleted_at: string | null;
+	id: number;
+	thread_id: number;
+	sender: string;
+	sender_type: MessageSenderTypeEnum;
+	message_contents: Array<MessageContent>;
+};
+
+
+
+/**
+ * Represents the pieces of content that can comprise an existing message.
+ */
+export type MessageContent = {
+	created_at: string;
+	updated_at: string;
+	deleted: boolean;
+	deleted_at: string | null;
+	content: string;
+	content_type: MessageContentTypeEnum;
+	id: number;
+};
+
+
+
+/**
+ * Enum for the different types of message content
+ * 
+ * TEXT: the message content is text
+ * IMAGE: the message content is an image
+ */
+export type MessageContentTypeEnum = 'text' | 'image' | 'citation';
 
 
 
