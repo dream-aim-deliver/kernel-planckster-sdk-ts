@@ -475,6 +475,7 @@ export type ResearchContext = {
 	id: number;
 	title: string;
 	description: string;
+	external_id: string;
 };
 
 

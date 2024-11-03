@@ -1216,6 +1216,10 @@ This is the context in which conversations will happen
 	type: 'string',
 	isRequired: true,
 },
+		external_id: {
+	type: 'string',
+	isRequired: true,
+},
 	},
 } as const;
 
